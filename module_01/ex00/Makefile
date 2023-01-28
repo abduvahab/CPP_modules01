@@ -1,0 +1,37 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: areheman <areheman@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/12/08 13:06:45 by areheman          #+#    #+#              #
+#    Updated: 2022/12/08 16:06:23 by areheman         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = ex00
+GCC = g++
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+
+SRCS = main.cpp Zombie.cpp randomChump.cpp newZombie.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+$(NAME) : $(OBJS)
+		$(GCC) $(CFLAGS) -o $@ $^
+
+.cpp . o :
+		$(GCC) $(CFLAGS) -c $< -o $@
+
+clean :
+		rm -rf $(OBJS)
+
+fclean : clean
+		rm -rf $(NAME)
+
+re : clean fclean all 
+
+.PHONEY : all re fclean clean 		
